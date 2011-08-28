@@ -1,0 +1,33 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Plugin' : none } %}
+{% set title = "Plugin" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Author</th>
+    <th>Description</th>
+    <th style="text-indent: -9999em">Action</th>
+  </tr>
+{% for name, plugin in plugins %}
+  <tr>
+      <td>{{ name }}</td>
+      <td>{{ plugin.version }}</td>
+      <td>{{ plugin.author }}</td>
+      <td>{{ plugin.description }}</td>
+      <td>{% if plugin.config_route %}<a href="{{ path(plugin.config_route) }}">Config</a>{% else %}-{% endif %}</td>
+  </tr>
+{% endfor %}
+</table>
+{% endblock %}

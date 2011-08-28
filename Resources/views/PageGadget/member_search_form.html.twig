@@ -1,0 +1,18 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+
+<form action="{{ result_route ? path(result_route) : current_path(attributes) }}" method="get">
+    {{ form_widget(form) }}
+    <input type="submit">
+</form>
+{% endblock %}

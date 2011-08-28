@@ -1,0 +1,55 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Profile' : path("_backend_profile"), 'Edit Profile' : none } %}
+{% set title = "Edit Profile" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+{% if profile.new %}
+<form action="{{ path("_backend_add_profile") }}" method="post">
+{% else %}
+<form action="{{ path("_backend_edit_profile", {"id": profile.id}) }}" method="post">
+{% endif %}
+{{ form_errors(form) }}
+<table>
+{{ form_row(form.name) }}
+{{ form_row(form.isRequired) }}
+{{ form_row(form.fieldType) }}
+<tr class="list" style="display: none">
+    <td>{{ form_label(form.list) }}</td>
+    <td>
+        {{ form_errors(form.list) }}
+        {{ form_widget(form.list, {'attr' : {'cols': 40, 'rows': 10}}) }}
+        {{ form_help(form.list, "A line for each choice") }}
+    </td>
+</tr>
+{{ form_row(form.label) }}
+{{ form_row(form.help) }}
+{{ form_rest(form) }}
+</table>
+<input type="submit" />
+</form>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+var switchList = function() {
+    if ("list" == $("#societo_base_profile_fieldType").val()) {
+        $("form tr.list").show();
+    } else {
+        $("form tr.list").hide();
+    }
+};
+
+$("#societo_base_profile_fieldType").click(switchList);
+$(document).keypress(switchList);
+$(document).ready(switchList);
+</script>
+{% endblock %}

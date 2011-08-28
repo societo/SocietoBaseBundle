@@ -1,0 +1,45 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Menu' : none } %}
+{% set title = "Edit Menu" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<table>
+{% if menu %}
+{% for key, value in menu.parameters %}
+    <tr>
+        <th>{{ key }}</th>
+        <td>{{ value.uri | default(value.route | default(none)) }}</td>
+        <td><a href="{{ path("_backend_menu_delete", {'caption': key}) }}">Delete</a></td>
+    </tr>
+{% endfor %}
+{% endif %}
+</table>
+
+<h3>Add uri item to menu</h3>
+
+<form action="{{ path('_backend_menu') }}" method="post">
+<table>
+{{ form_row(form._token) }}
+{{ form_row(form.caption) }}
+<tr>
+    <td>Link to</td>
+    <td>
+        <p>Select page from the following list:</p>
+        <p>{{ form_widget(form.route) }}</p>
+        <p>... or input URL to a resource:</p>
+        <p>{{ form_widget(form.uri) }}</p>
+    </td>
+</tr>
+</table>
+<input type="submit">
+</form>
+{% endblock %}

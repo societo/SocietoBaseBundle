@@ -1,0 +1,44 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+<?xml version="1.0" encoding="UTF-8" ?>
+<recipe>
+    <meta>
+        <title>Recipe of {{ app.config.site_name | default("Societo") }}</title>
+    </meta>
+    <plugins>
+        {% for plugin in plugins %}
+        <plugin name="{{ plugin }}" />
+        {% endfor %}
+    </plugins>
+    <pages>
+        {% for page in pages %}
+        <page name="{{ page.name }}" url="{{ page.path }}">
+            {% for point,gadgets in page.gadgets %}
+            <{{point}}>
+                {% for gadget in gadgets %}
+                <gadget name="{{ gadget.name }}">
+                    {% for name, value in gadget.parameters %}
+                    <parameter name="{{ name }}" value="{{ value | json_encode }}" />
+                    {% endfor %}
+                </gadget>
+                {% endfor %}
+            </{{point}}>
+            {% endfor %}
+        </page>
+        {% endfor %}
+    </pages>
+    <menu>
+        {% for title, item in menu %}
+            {% if item.route | default(none) %}
+            <item route="{{ item.route }}" title="{{ title }}" />
+            {% else %}
+            <item url="{{ item.uri }}" title="{{ title }}" />
+            {% endif %}
+        {% endfor %}
+    </menu>
+</recipe>

@@ -1,0 +1,100 @@
+/**
+ * SocietoBaseBundle
+ * Copyright (C) 2011 Kousuke Ebihara
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace Societo\BaseBundle\Test;
+
+use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\ConfigCache;
+
+class TestAppKernel extends \#PARENT_CLASS#
+{
+    private $rootConfig = null;
+
+    public function __construct($environment, $debug, $rootConfig = null)
+    {
+        $this->rootConfig = $rootConfig;
+
+        parent::__construct($environment, $debug);
+    }
+
+    public function registerBundles()
+    {
+        $_tmp_rootDir = $this->rootDir;
+        $this->rootDir = '#ROOT_DIR#';
+
+        $result = parent::registerBundles();
+
+        $this->rootDir = $_tmp_rootDir;
+
+        return $result;
+    }
+
+    protected function initializeContainer()
+    {
+        // not to use cache
+        $class = $this->getContainerClass();
+        $cache = new ConfigCache($this->getCacheDir().'/'.$class.'.php', $this->debug);
+        $container = $this->buildContainer();
+        $this->dumpContainer($cache, $container, $class, $this->getContainerBaseClass());
+
+        require_once $cache;
+
+        $this->container = new $class();
+        $this->container->set('kernel', $this);
+
+        $this->container->get('cache_warmer')->warmUp($this->container->getParameter('kernel.cache_dir'));
+    }
+
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        if (!$this->rootConfig) {
+            parent::registerContainerConfiguration($loader);
+        }
+
+        $loader->load($this->rootConfig);
+    }
+
+    public function serialize()
+    {
+        return serialize(array($this->rootConfig, $this->getEnvironment(), $this->isDebug()));
+    }
+
+    public function unserialize($str)
+    {
+        call_user_func_array(array($this, '__construct'), unserialize($str));
+    }
+
+    protected function getKernelParameters()
+    {
+        $results = parent::getKernelParameters();
+
+        return $results;
+    }
+
+    public function getCacheDir()
+    {
+        return '#ROOT_DIR#/cache/'.$this->environment;
+    }
+
+    public function getLogDir()
+    {
+        return '#ROOT_DIR#/logs';
+    }
+
+}

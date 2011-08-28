@@ -1,0 +1,40 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% extends "form_table_layout.html.twig" %}
+
+{% block field_help %}
+{% spaceless %}
+{% if help|default(none) %}
+<ul class="help">
+    <li>{{ help|trans }}</li>
+</ul>
+{% endif %}
+{% endspaceless %}
+{% endblock field_help %}
+
+{% block field_label %}
+{% spaceless %}
+    {{ parent() }}{{ required ? ' <strong class="required">*</strong>' : '' }}
+{% endspaceless %}
+{% endblock field_label %}
+
+{% block field_row %}
+{% spaceless %}
+    <tr>
+        <td>
+            {{ form_label(form) }}
+        </td>
+        <td>
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            {{ form_help(form) }}
+        </td>
+    </tr>
+{% endspaceless %}
+{% endblock field_row %}

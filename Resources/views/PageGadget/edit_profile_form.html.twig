@@ -1,0 +1,17 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+<form action="{{ path("update_profile", {"gadget": gadget}) }}" method="post">
+{{ form_widget(form) }}
+<button type="submit">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,82 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Recipe' : none } %}
+{% set title = "Recipe" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+{% if recipe.missing_plugins %}
+<p>You cannot cook by this recipe because of there are missing plugins. Please install the following missing plugins.</p>
+{% else %}
+<p>Do you continue to cook by this recipe?</p>
+
+<form action="{{ path('_backend_recipe_cook') }}" method="post">
+    <input type="hidden" name="url" value="{{ url }}">
+    <input type="submit">
+</form>
+{% endif %}
+
+<div class="recipe">
+<h3>{{ recipe.title }}</h3>
+<dl>
+{% if recipe.installed_plugins %}
+<dt>Required plugins (installed)</dt>
+<dd>
+    <p>This recipe uses the following installed plugins.</p>
+
+    <ul>
+    {% for plugin in recipe.installed_plugins %}
+    <li>{{ plugin }}</li>
+    {% endfor %}
+    </ul>
+</dd>
+{% endif %}
+
+{% if recipe.missing_plugins %}
+<dt>Required plugins (missing)</dt>
+<dd>
+    <p>You must install the following plugins to use this recipe.</p>
+
+    <ul>
+    {% for plugin in recipe.missing_plugins %}
+    <li>{{ plugin }}</li>
+    {% endfor %}
+    </ul>
+</dd>
+{% endif %}
+
+{% if recipe.pages %}
+<dt>Pages</dt>
+<dd>
+    <p>This recipe will create the following pages</p>
+
+    <ul>
+    {% for page, item in recipe.pages %}
+    <li>{{ page }} (/{{ item.url }})</li>
+    {% endfor %}
+    </ul>
+</dd>
+{% endif %}
+
+{% if recipe.menus %}
+<dt>Menus</dt>
+<dd>
+    <p>This recipe will create the menu items</p>
+
+    <ul>
+    {% for title, menu in recipe.menus %}
+    <li>{{ title }} ({{ menu.route | default(menu.url) }})</li>
+    {% endfor %}
+    </ul>
+</dd>
+{% endif %}
+</dl>
+</div>
+{% endblock %}

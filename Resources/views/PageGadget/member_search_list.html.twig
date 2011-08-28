@@ -1,0 +1,37 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+{% if results %}
+<div class="search-result">
+{% for result in results %}
+<ul>
+    <li class="image"><a href="{{ path("profile", {"member" : result}) }}"><img src="{{ path('show_resized_member_image', {'member': result, 'width': 50, 'height': 50}) }}" class="icon"></a></li>
+    <li class="name"><a href="{{ path("profile", {"member" : result}) }}">{{ result.username }}</a></li>
+    {% if result.description %}
+    <li class="description">{{ result.description }}</li>
+    {% endif %}
+</ul>
+{% endfor %}
+</div>
+{% else %}
+<p>No results.</p>
+{% endif %}
+
+{% if route_to_more_page %}
+<p class="more"><a href="{{ path(route_to_more_page) }}">More</a></p>
+{% endif %}
+{% if has_pager %}
+<div class="pagerfanta">
+{{ pagerfanta(pagerfanta, 'default', current_route_info(attributes)) }}
+</div>
+{% endif %}
+{% endblock %}

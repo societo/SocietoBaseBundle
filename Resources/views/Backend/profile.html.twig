@@ -1,0 +1,33 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Profile' : none } %}
+{% set title = "Profile" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<p><a href="{{ path("_backend_add_profile") }}">Create New</a></p>
+
+<table>
+    <tr>
+        <th style="text-indent: -9999em;">Action</th>
+        <th>Name</th>
+        <th>Field Type</th>
+        <th>Required</th>
+    </tr>
+{% for profile in profiles %}
+    <tr>
+        <td><a href="{{ path("_backend_delete_profile", {"id": profile.id}) }}">delete</a></td>
+        <td><a href="{{ path("_backend_edit_profile", {"id": profile.id}) }}">{{ profile.name }}</a></td>
+        <td>{{ profile.fieldType }}</td>
+        <td>{{ profile.isRequired ? "yes" : "no" }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

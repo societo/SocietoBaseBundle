@@ -1,0 +1,28 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Config' : none } %}
+{% set title = 'Site Config' %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<div id="config_menu">
+<ul>
+{% for c in categories %}
+    <li{{ c == category ? ' class="current"' : "" }}><a href="{{ path("_backend_config_category", {"category" : c}) }}">{{ c }}</a></li>
+{% endfor %}
+</ul>
+</div>
+<div id="config_content">
+    <form action="{{ path("_backend_config_category", {"category" : category}) }}" method="post">
+    {{ form_widget(form) }}
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}

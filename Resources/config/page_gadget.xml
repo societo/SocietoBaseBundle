@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="societo.base.page_gadget.edit_profile_form" class="Societo\BaseBundle\PageGadget\EditProfileForm">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.base.page_gadget.member_search_form" class="Societo\BaseBundle\PageGadget\MemberSearchForm">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.base.page_gadget.member_search_result_list" class="Societo\BaseBundle\PageGadget\MemberSearchResultList">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.base.page_gadget.member_profile_list" class="Societo\BaseBundle\PageGadget\MemberProfileList">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.base.page_gadget.member_image_form" class="Societo\BaseBundle\PageGadget\MemberImageForm">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.base.page_gadget.member_image" class="Societo\BaseBundle\PageGadget\MemberImage">
+            <tag name="societo.page.gadget" />
+        </service>
+    </services>
+</container>

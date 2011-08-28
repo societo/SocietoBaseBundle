@@ -1,0 +1,33 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+<ul>
+<li><a href="{{ path('profile', {'member': member}) }}" title="{{ member.username }}"><img src="{{ path('show_resized_member_image', {'member': member, 'width': 100, 'height': 100}) }}" class="icon"></a></li>
+{% if 'nothing' != show_with_name %}
+<li>
+{% if 'with_linked_name' == show_with_name %}
+<a href="{{ path('profile', {'member': member}) }}">{{ member.username }}</a>
+{% elseif 'with_name' == show_with_name %}
+{{ member.username }}
+{% endif %}
+</li>
+{% endif %}
+{% if followable %}
+<li>
+<form action="{{ path('_follow', {'member': member}) }}" method="post">
+{{ form_widget(follow_form._token) }}
+<button type="submit">Follow</button>
+</form>
+</li>
+{% endif %}
+</ul>
+{% endblock %}

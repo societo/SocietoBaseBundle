@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="societo.site_config.class">Societo\BaseBundle\SiteConfig</parameter>
+        <parameter key="templating.globals.class">Societo\BaseBundle\Templating\GlobalVariables</parameter>
+
+        <parameter key="sensio_framework_extra.converter.listener.class">Societo\BaseBundle\EventListener\ParamConverterListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="societo.site_config" class="%societo.site_config.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="societo.base.controller.image" class="Societo\BaseBundle\Controller\ImageController">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="societo.form.type_extension.help" class="Societo\BaseBundle\Form\Extension\HelpMessageType">
+            <tag name="form.type_extension" alias="field" />
+        </service>
+
+        <service id="societo.form.type_extension.validator_validator" class="Societo\BaseBundle\Form\Extension\ValidatorValidatorType">
+            <argument type="service" id="validator" />
+            <tag name="form.type_extension" alias="field" />
+        </service>
+
+        <service id="societo.base.update_member_display_name_event_subscriber" class="Societo\BaseBundle\UpdateMemberDisplayNameEventSubscriber">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
+</container>

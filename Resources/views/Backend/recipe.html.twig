@@ -1,0 +1,35 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Recipe' : none } %}
+{% set title = "Recipe" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<p>Recipe creates some contents of this site for you automatically.</p>
+
+<p>If you give a distributed recipe to Societo, it cooks site by following that recipe. It means you will get any types of social site soon.</p>
+
+<h3>Input recipe URL</h3>
+
+<p>Please input URL to distributed recipe:</p>
+
+<form action="{{ path("_backend_recipe") }}" method="post">
+Url: <input type="text" name="url" />
+<button type="submit">Submit</button>
+</form>
+
+<h3>Export recipe of this site</h3>
+
+<p>You can also export the current configurations as recipe.</p>
+
+<form action="{{ path("_backend_recipe_export") }}" method="get">
+<button type="submit">Export</button>
+</form>
+{% endblock %}

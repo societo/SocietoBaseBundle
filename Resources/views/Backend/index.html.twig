@@ -1,0 +1,27 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block title %} - Admin - Welcome{% endblock %}
+
+{% block body %}
+<h2>Dashboard</h2>
+
+<h3>Health check</h3>
+{% if errors  | default({}) %}
+<p>Societo has been installed sucessfully but...</p>
+<ul>
+{% for error in errors %}
+<li>{{ error }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>Societo cannot found any problems in this site.</p>
+{% endif %}
+{% endblock %}

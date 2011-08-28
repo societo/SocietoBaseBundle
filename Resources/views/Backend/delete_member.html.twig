@@ -1,0 +1,29 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Member' : path("_backend_member"), 'Delete Member' : none } %}
+{% set title = "Delete Member" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<p>Do you really remove the following member from this site?</p>
+
+{# TODO : show more member information #}
+<dl>
+    <dt>Nickname</dt>
+    <dd>{{ member.username }}</dd>
+</dl>
+
+<form action="{{ path('_backend_member_delete', {'member' : member}) }}" method="post">
+    <table>
+    {{ form_widget(form) }}
+    </table>
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}

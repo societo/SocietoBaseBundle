@@ -1,0 +1,58 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Member' : none } %}
+{% set title = "Members" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<form>
+    <img src="{{ asset('bundles/framework/images/grey_magnifier.png') }}" alt="Search" />
+    <input name="search[nickname]" type="text" value="{{ search ? search.nickname : "" }}">
+
+    <select name="filter">
+        <option value="active"{{ active ? ' selected="selected"' : '' }}>Active</option>
+        <option value="inactive"{{ not active ? ' selected="selected"' : '' }}>Inactive</option>
+    </select>
+
+    <button type="submit">Apply</button>
+</form>
+
+<div class="pagerfanta">
+{{ pagerfanta(pagerfanta, 'default') }}
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th style="text-indent: -9999em;">Action</th>
+            <th>Name</th>
+            <th>Administrator</th>
+            <th>Created</th>
+            <th>Last login</th>
+        </tr>
+    </thead>
+{% for member in members %}
+    <tr>
+        <td>
+            {% if not active %} <a href="{{ path("_backend_member_activate", {"id": member.id}) }}">activate</a> | {% endif %}
+            {% if active %}<a href="{{ path("_backend_member_delete", {"member" : member}) }}">delete</a> | {% endif %}
+        </td>
+        <td><a href="{{ path("_backend_member_edit", {"member": member}) }}">{{ member.username }}</a></td>
+        <td>{{ member.isAdmin ? "Yes" : "No" }}</td>
+        <td>{{ member.createdAt | date ("Y-m-d H:i:s") }}</td>
+        <td>{{ member.lastLogin ? member.lastLogin | date("Y-m-d H:i:s")  : "-" }}</td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="5">No results for your query.</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

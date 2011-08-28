@@ -1,0 +1,36 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Profile' : path("_backend_profile"), 'Delete Profile' : none } %}
+{% set title = "Delete Profile" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<p>Do you really delete the following profile?</p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <td>{{ profile.name }}</td>
+    </tr>
+    <tr>
+        <th>Field Type</th>
+        <td>{{ profile.fieldType }}</td>
+    </tr>
+    <tr>
+        <th>Required</th>
+        <td>{{ profile.isRequired ? "yes" : "no" }}</td>
+    </tr>
+</table>
+
+<form action="{{ path("_backend_delete_profile", {'id': profile.id}) }}" method="post">
+{{ form_widget(form) }}
+<input type="submit">
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% if menu %}
+<ul>
+{% for key, value in menu.parameters %}
+{% if value.route | default(none) %}
+<li><a href="{{ path(value.route, value.parameters) }}">{{ key }}</a></li>
+{% else %}
+<li><a href="{{ value.uri }}">{{ key }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+{% endif %}

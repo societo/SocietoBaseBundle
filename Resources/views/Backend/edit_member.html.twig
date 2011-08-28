@@ -1,0 +1,30 @@
+{##
+ # SocietoBaseBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% set topic_path = { 'Member' : path("_backend_member"), 'Edit Member' : none } %}
+{% set title = "Edit Member" %}
+
+{% extends skin_template_path('admin_base.html.twig') %}
+
+{% block body %}
+<form action="{{ path('_backend_member_edit', {'member' : member}) }}" method="post">
+    {{ form_errors(form) }}
+
+    <h3>General</h3>
+    <table class="general">
+        {{ form_row(form.isAdmin) }}
+        {{ form_row(form.locked) }}
+    </table>
+
+    <h3>Profile</h3>
+    {{ form_widget(form.profile) }}
+
+    {{ form_rest(form) }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

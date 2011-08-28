@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="_backend" pattern="/admin">
+        <default key="_controller">SocietoBaseBundle:Backend:index</default>
+    </route>
+    <route id="_backend_member" pattern="/admin/member">
+        <default key="_controller">SocietoBaseBundle:Backend:member</default>
+    </route>
+    <route id="_backend_member_inactive" pattern="/admin/member/inactive">
+        <default key="_controller">SocietoBaseBundle:Backend:member</default>
+        <default key="active">false</default>
+    </route>
+    <route id="_backend_member_activate" pattern="/admin/member/activate/{id}">
+        <default key="_controller">SocietoBaseBundle:Backend:memberActivate</default>
+    </route>
+    <route id="_backend_member_edit" pattern="/admin/member/{member}/edit">
+        <default key="_controller">SocietoBaseBundle:Backend:memberEdit</default>
+    </route>
+    <route id="_backend_member_delete" pattern="/admin/member/{member}/delete">
+        <default key="_controller">SocietoBaseBundle:Backend:memberDelete</default>
+    </route>
+    <route id="_backend_config" pattern="/admin/config">
+        <default key="_controller">SocietoBaseBundle:Backend:config</default>
+    </route>
+    <route id="_backend_config_category" pattern="/admin/config/{category}">
+        <default key="_controller">SocietoBaseBundle:Backend:config</default>
+    </route>
+    <route id="_backend_menu" pattern="/admin/menu">
+        <default key="_controller">SocietoBaseBundle:Backend:menu</default>
+    </route>
+    <route id="_backend_menu_delete" pattern="/admin/menu/delete/{caption}">
+        <default key="_controller">SocietoBaseBundle:Backend:deleteMenu</default>
+    </route>
+    <route id="_backend_page" pattern="/admin/page">
+        <default key="_controller">SocietoBaseBundle:Backend:page</default>
+    </route>
+    <route id="_backend_page_add_gadget" pattern="/admin/page/{page_name}/gadget/{gadget_name}/add">
+        <default key="_controller">SocietoBaseBundle:Backend:addPageGadget</default>
+    </route>
+    <route id="_backend_page_edit_gadget" pattern="/admin/page/gadget/{id}/edit">
+        <default key="_controller">SocietoBaseBundle:Backend:editPageGadget</default>
+    </route>
+    <route id="_backend_page_sort_gadget" pattern="/admin/page/{page_name}/gadget/sort">
+        <default key="_controller">SocietoBaseBundle:Backend:sortPageGadget</default>
+    </route>
+    <route id="_backend_profile" pattern="/admin/profile">
+        <default key="_controller">SocietoBaseBundle:Backend:profile</default>
+    </route>
+    <route id="_backend_add_profile" pattern="/admin/profile/add">
+        <default key="_controller">SocietoBaseBundle:Backend:editProfile</default>
+    </route>
+    <route id="_backend_edit_profile" pattern="/admin/profile/{id}/edit">
+        <default key="_controller">SocietoBaseBundle:Backend:editProfile</default>
+    </route>
+    <route id="_backend_delete_profile" pattern="/admin/profile/{id}/delete">
+        <default key="_controller">SocietoBaseBundle:Backend:deleteProfile</default>
+    </route>
+    <route id="_backend_plugin" pattern="/admin/plugin">
+        <default key="_controller">SocietoBaseBundle:Backend:plugin</default>
+    </route>
+    <route id="_backend_recipe" pattern="/admin/recipe">
+        <default key="_controller">SocietoBaseBundle:Backend:recipe</default>
+    </route>
+    <route id="_backend_recipe_cook" pattern="/admin/recipe/cook">
+        <default key="_controller">SocietoBaseBundle:Backend:recipeCook</default>
+    </route>
+    <route id="_backend_recipe_export" pattern="/admin/recipe/export">
+        <default key="_controller">SocietoBaseBundle:Backend:recipeExport</default>
+    </route>
+    <route id="show_member_image" pattern="/image/member/{member}">
+        <default key="_controller">SocietoBaseBundle:MemberImage:show</default>
+    </route>
+    <route id="show_resized_member_image" pattern="/image/member/{width}x{height}/{member}">
+        <default key="_controller">SocietoBaseBundle:MemberImage:show</default>
+    </route>
+    <route id="show_image" pattern="/image/{filename}">
+        <default key="_controller">SocietoBaseBundle:Image:show</default>
+    </route>
+    <route id="show_resized_image" pattern="/image/{width}x{height}/{filename}">
+        <default key="_controller">SocietoBaseBundle:Image:show</default>
+    </route>
+    <route id="_member_searching" pattern="/member/{gadget_id}/doSearch">
+        <default key="_controller">SocietoBaseBundle:MemberSearch:search</default>
+    </route>
+    <route id="post_member_image" pattern="/memberImage/add/{gadget}">
+        <default key="_controller">SocietoBaseBundle:MemberImage:post</default>
+        <requirement key="_method">POST</requirement>
+    </route>
+    <route id="update_profile" pattern="/member/profile/update/{gadget}">
+        <default key="_controller">SocietoBaseBundle:MemberProfile:update</default>
+        <requirement key="_method">POST</requirement>
+    </route>
+</routes>
