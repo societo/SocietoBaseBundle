@@ -26,7 +26,7 @@ class MemberProfile extends BaseEntity
     protected $member;
 
     /**
-     * @ORM\ManyToOne(targetEntity="profile")
+     * @ORM\ManyToOne(targetEntity="Profile")
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
     protected $profile;
