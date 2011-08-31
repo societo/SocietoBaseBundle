@@ -18,6 +18,8 @@ use Societo\BaseBundle\Util\ArrayAccessibleParameterBag;
 use Societo\BaseBundle\Form\MemberImageType;
 use Societo\Util\StorageBundle\Entity\File;
 
+use Symfony\Component\Finder\Finder;
+
 class MemberImageController extends Controller
 {
     public function postAction($gadget)
@@ -35,6 +37,12 @@ class MemberImageController extends Controller
 
             $em->getRepository('SocietoBaseBundle:MemberImage')
                 ->setMemberImage($user->getMember(), $storage->storeFromEntity($file));
+
+            // TODO: extract
+            $dir = $this->get('kernel')->getRootDir().'/../web/image/member';
+            $filesystem = $this->get('filesystem');
+            $finder = new Finder();
+            $filesystem->remove($finder->files()->name($user->getMemberId())->in($dir));
 
             $this->get('session')->setFlash('success', 'Changes are saved successfully');
 
