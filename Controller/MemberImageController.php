@@ -42,7 +42,7 @@ class MemberImageController extends Controller
             $dir = $this->get('kernel')->getRootDir().'/../web/image/member';
             $filesystem = $this->get('filesystem');
             $finder = new Finder();
-            $filesystem->remove($finder->files()->name($user->getMemberId())->in($dir));
+            $filesystem->remove($finder->files()->name((string)$user->getMemberId())->in($dir));
 
             $this->get('session')->setFlash('success', 'Changes are saved successfully');
 
