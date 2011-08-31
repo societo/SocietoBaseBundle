@@ -609,7 +609,7 @@ class BackendController extends Controller
             'name' => 'routing',
         ));
         if (!$config) {
-            $config = new \Societo\BaseBundle\Entity\Config('routing');
+            $config = new \Societo\Config\DatabaseBundle\Entity\Config('routing');
         }
 
         return $config;
