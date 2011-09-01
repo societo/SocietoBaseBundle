@@ -40,6 +40,12 @@ class UpdateMemberDisplayNameEventSubscriber implements \Doctrine\Common\EventSu
                 $metadata = $em->getClassMetadata('Societo\BaseBundle\Entity\Member');
 
                 $member = $entity->getMember();
+                // FIXME: this method causes error in registration
+                //        so skip presistent temporally
+                if (!$member->getId()) {
+                    return true;
+                }
+
                 $member->setDisplayName($entity->getValue());
                 $em->persist($member);
                 $em->getUnitOfWork()->computeChangeSet($metadata, $member);
