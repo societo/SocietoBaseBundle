@@ -22,6 +22,7 @@
             <{{point}}>
                 {% for gadget in gadgets %}
                 <gadget name="{{ gadget.name }}">
+                    <parameter name="caption" value="{{ gadget.caption }}" />
                     {% for name, value in gadget.parameters %}
                     <parameter name="{{ name }}" value="{{ value | json_encode }}" />
                     {% endfor %}
