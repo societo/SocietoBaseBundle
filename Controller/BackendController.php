@@ -573,7 +573,7 @@ class BackendController extends Controller
         foreach ($xml->xpath('/recipe/pages/page') as $page) {
             $pageName = (string)$page['name'];
             $url = (string)$page['url'];
-            if ($pageName && $url) {
+            if ($pageName) {
                 $recipe['pages'][$pageName] = array('url' => $url);
             } else {
                 continue;
