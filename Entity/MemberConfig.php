@@ -19,7 +19,7 @@ use Societo\BaseBundle\Entity\Member;
  *
  * @ORM\Entity
  * @ORM\Table(name="member_config",
- *      uniqueConstraints={@ORM\UniqueConstraint(name="namespace_name",columns={"namespace", "name"})}
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="member_namespace_name",columns={"member_id", "namespace", "name"})}
  * )
  * @author Kousuke Ebihara <ebihara@php.net>
  */
