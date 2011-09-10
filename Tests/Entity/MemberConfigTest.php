@@ -10,7 +10,7 @@ use Societo\BaseBundle\Entity\MemberConfig as MemberConfigEntity;
 use Societo\BaseBundle\Entity\Member;
 use Societo\BaseBundle\Test\EntityTestCase;
 
-class MemberConfig extends EntityTestCase
+class MemberConfigTest extends EntityTestCase
 {
     public function createTestEntityManager($entityPaths = array())
     {

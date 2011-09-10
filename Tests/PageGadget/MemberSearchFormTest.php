@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\PageGadget;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class MemberSearchForm extends WebTestCase
+class MemberSearchFormTest extends WebTestCase
 {
     public function testAction()
     {

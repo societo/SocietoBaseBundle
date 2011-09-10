@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\PageGadget;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class MemberImage extends WebTestCase
+class MemberImageTest extends WebTestCase
 {
     public function setUp()
     {

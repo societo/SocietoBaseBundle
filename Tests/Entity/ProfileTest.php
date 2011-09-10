@@ -9,7 +9,7 @@ namespace Societo\BaseBundle\Tests\Entity;
 use Societo\BaseBundle\Entity\Profile as ProfileEntity;
 use Societo\BaseBundle\Test\EntityTestCase;
 
-class Profile extends EntityTestCase
+class ProfileTest extends EntityTestCase
 {
     public function createTestEntityManager($entityPaths = array())
     {

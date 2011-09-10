@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\Controller;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class ImageController extends WebTestCase
+class ImageControllerTestTest extends WebTestCase
 {
     public function testAction()
     {

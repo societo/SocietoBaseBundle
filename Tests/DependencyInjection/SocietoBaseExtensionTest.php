@@ -9,7 +9,7 @@ namespace Societo\BaseBundle\Tests\DependencyInjection;
 use Societo\BaseBundle\DependencyInjection\SocietoBaseExtension as TargetExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class SocietoBaseExtension extends \PHPUnit_Framework_TestCase
+class SocietoBaseExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testLoad()
     {

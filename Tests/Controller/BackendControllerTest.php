@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\Controller;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class BackendController extends WebTestCase
+class BackendControllerTestTest extends WebTestCase
 {
     public function testAction()
     {

@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\PageGadget;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class EditProfileForm extends WebTestCase
+class EditProfileFormTest extends WebTestCase
 {
     public function setUp()
     {

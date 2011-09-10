@@ -9,7 +9,7 @@ namespace Societo\BaseBundle\Tests\Entity;
 use Societo\BaseBundle\Entity\Menu as MenuEntity;
 use Societo\BaseBundle\Test\EntityTestCase;
 
-class Menu extends EntityTestCase
+class MenuTest extends EntityTestCase
 {
     public function createTestEntityManager($entityPaths = array())
     {

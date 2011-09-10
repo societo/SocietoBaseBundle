@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\DBAL;
 
 use Doctrine\DBAL\Types\Type;
 
-class BlobType extends \PHPUnit_Framework_TestCase
+class BlobTypeTest extends \PHPUnit_Framework_TestCase
 {
     protected $_platform, $_type;
 

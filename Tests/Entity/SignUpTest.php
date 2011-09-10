@@ -9,7 +9,7 @@ namespace Societo\BaseBundle\Tests\Entity;
 use Societo\BaseBundle\Entity\SignUp as SignUpEntity;
 use Societo\BaseBundle\Test\EntityTestCase;
 
-class SignUp extends EntityTestCase
+class SignUpTest extends EntityTestCase
 {
     public function createTestEntityManager($entityPaths = array())
     {

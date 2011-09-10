@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\Controller;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class MenuController extends WebTestCase
+class MenuControllerTest extends WebTestCase
 {
     public function setUp()
     {

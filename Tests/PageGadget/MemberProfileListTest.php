@@ -8,7 +8,7 @@ namespace Societo\BaseBundle\Tests\PageGadget;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class MemberProfileList extends WebTestCase
+class MemberProfileListTest extends WebTestCase
 {
     public function setUp()
     {

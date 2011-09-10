@@ -39,7 +39,9 @@ class WebTestCase extends BaseWebTestCase
         }
 
         if (!self::$loaded) {
-            $_SERVER['SYMFONY__KERNEL__ROOT_DIR'] = static::getPhpUnitXmlDir();
+            if (!isset($_SERVER['SYMFONY__KERNEL__ROOT_DIR'])) {
+                $_SERVER['SYMFONY__KERNEL__ROOT_DIR'] = static::getPhpUnitXmlDir();
+            }
 
             $class = file_get_contents(__DIR__.'/AppKernel.php.template');
             eval(strtr($class, array(

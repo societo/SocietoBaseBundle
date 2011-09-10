@@ -25,7 +25,7 @@ if (!class_exists('Societo\BaseBundle\Tests\Entity\ConcreteAbstractContent')) {
     }
 }
 
-class AbstractContent extends EntityTestCase
+class AbstractContentTest extends EntityTestCase
 {
     public function testGetBody()
     {

@@ -28,7 +28,7 @@ if (!class_exists('Societo\BaseBundle\Tests\Entity\ConcreteBaseEntity')) {
     }
 }
 
-class BaseEntity extends EntityTestCase
+class BaseEntityTest extends EntityTestCase
 {
     public function testGetId()
     {

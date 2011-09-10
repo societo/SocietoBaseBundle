@@ -9,7 +9,7 @@ namespace Societo\BaseBundle\Tests\Entity;
 use Societo\BaseBundle\Entity\SiteConfig as SiteConfigEntity;
 use Societo\BaseBundle\Test\EntityTestCase;
 
-class SiteConfig extends EntityTestCase
+class SiteConfigTest extends EntityTestCase
 {
     public function createTestEntityManager($entityPaths = array())
     {

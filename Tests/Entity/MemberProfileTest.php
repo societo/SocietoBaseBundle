@@ -11,7 +11,7 @@ use Societo\BaseBundle\Entity\Member;
 use Societo\BaseBundle\Entity\Profile;
 use Societo\BaseBundle\Test\EntityTestCase;
 
-class MemberProfile extends EntityTestCase
+class MemberProfileTest extends EntityTestCase
 {
     public function createTestEntityManager($entityPaths = array())
     {
