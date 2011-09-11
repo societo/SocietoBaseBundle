@@ -440,13 +440,13 @@ class BackendController extends Controller
 
             $em = $this->get('doctrine.orm.entity_manager');
 
+            $config = $this->getPageConfig();
             foreach ($recipe['pages'] as $pageName => $pageData) {
                 $page = $em->getRepository('SocietoPageBundle:Page')->findOneBy(array(
                     'name' => $pageName,
                 ));
                 if (!$page) {
                     $page = new \Societo\PageBundle\Entity\Page($pageName, $pageData['url'], '');
-                    $config = $this->getPageConfig();
                     $this->addEntryToPageConfig($config, $pageName, array(
                         'pattern' => $pageData['url'],
                         'defaults' => array(
@@ -458,7 +458,6 @@ class BackendController extends Controller
                     ));
 
                     $em->persist($page);
-                    $em->persist($config);
                 }
 
                 // gadgets
@@ -482,6 +481,7 @@ class BackendController extends Controller
                     }
                 }
             }
+            $em->persist($config);
 
             $menu = $em->getRepository('SocietoBaseBundle:Menu')->findOneBy(array(
                 'name' => 'global',
